@@ -1,7 +1,9 @@
 <?php
 include_once 'autoload.inc.php';
 
-$deputados = new deputados();
+$orgaos = new orgaos();
+
+$lista = $orgaos->getPauta("2004", "01/01/2012", "30/04/2012");
 
 echo "<pre>";
-print_r($deputados->findByUF("ES"));
+print_r($lista);

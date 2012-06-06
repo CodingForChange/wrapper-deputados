@@ -13,7 +13,7 @@ class deputados{
 		$this->listaDeputados = simplexml_load_string($curl->resposta);
 	}
 	
-	public function findByID($idParlamentar){
+	public function getByID($idParlamentar){
 		foreach ($this->listaDeputados as $deputado) {
 			if ($deputado->idParlamentar == $idParlamentar) {
 				return $deputado;
@@ -41,5 +41,21 @@ class deputados{
 		}
 		
 		return $this->deputados;
+	}
+	
+	public function getComissoesTi($idParlamentar){
+		foreach ($this->listaDeputados as $deputado) {
+			if ($deputado->idParlamentar == $idParlamentar) {
+				return $deputado->comissoes->titular;
+			}
+		}
+	}
+	
+	public function getComissoesSu($idParlamentar){
+		foreach ($this->listaDeputados as $deputado) {
+			if ($deputado->idParlamentar == $idParlamentar) {
+				return $deputado->comissoes->suplente;
+			}
+		}
 	}
 }
